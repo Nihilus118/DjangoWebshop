@@ -42,6 +42,9 @@ class Artikel(models.Model):
 class Zahlarten(models.Model):
     name = models.CharField(max_length=40)
 
+    def __str__(self):
+        return self.name
+
 
 class Bestellungen(models.Model):
     bestellnummer = models.IntegerField(primary_key=True, auto_created=True)
