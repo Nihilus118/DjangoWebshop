@@ -39,6 +39,10 @@ class Artikel(models.Model):
         return self.artikelname
 
 
+class Zahlarten(models.Model):
+    name = models.CharField(max_length=40)
+
+
 class Bestellungen(models.Model):
     bestellnummer = models.IntegerField(primary_key=True, auto_created=True)
     kundennummer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
@@ -47,6 +51,11 @@ class Bestellungen(models.Model):
     strasse = models.CharField(max_length=50)
     hausnummer = models.CharField(max_length=5)
     bezahlt = models.BooleanField(default=True)
+    zahlart = models.ForeignKey(
+        Zahlarten,
+        default=1,
+        on_delete=models.DO_NOTHING
+    )
     zahldatum = models.DateTimeField()
     kasten = models.ForeignKey(Kaesten, on_delete=models.DO_NOTHING)
     farbe = models.ForeignKey(Farben, on_delete=models.DO_NOTHING)
