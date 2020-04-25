@@ -1,0 +1,3 @@
+django
+paypalrestsdk
+autopep8
