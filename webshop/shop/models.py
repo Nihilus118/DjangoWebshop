@@ -64,4 +64,4 @@ class Bestellungen(models.Model):
     farbe = models.ForeignKey(Farben, on_delete=models.DO_NOTHING)
 
     def __str__(self):
-        return self.bestellnummer
+        return str(self.bestellnummer)
