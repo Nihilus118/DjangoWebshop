@@ -1,3 +1,7 @@
 from django.contrib import admin
+from .models import Kaesten, Farben, Artikel, Bestellungen
 
-# Register your models here.
+admin.site.register(Kaesten)
+admin.site.register(Farben)
+admin.site.register(Artikel)
+admin.site.register(Bestellungen)
