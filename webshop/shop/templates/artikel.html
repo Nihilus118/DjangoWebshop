@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Alle Artikel</title>
+</head>
+
+<body>
+    {% for artikel in artikel_liste %}
+    {{ artikel.artikelnr }}
+    {{ artikel.artikelname }}
+    {{ artikel.preis }}
+    {{ artikel.menge }}
+    {{ artikel.groesse_kasten }}
+    {{ artikel.farbe_kasten }}
+    <br>
+    {% endfor %}
+</body>
+
+</html>
