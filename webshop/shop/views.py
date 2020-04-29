@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.views.generic import ListView
-from .models import Artikel
+from .models import Artikel, Kaesten, Farben
 
 
 def index(request):
@@ -19,3 +19,12 @@ def artikel(request):
         'artikel_liste': Artikel.objects.all()
     }
     return render(request, 'artikel.html', context=context)
+
+
+def designer(request):
+    context = {
+        'kaesten': Kaesten.objects.all(),
+        'farben': Farben.objects.all(),
+    }
+
+    return render(request, 'designer.html', context=context)

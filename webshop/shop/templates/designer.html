@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Designer</title>
+</head>
+
+<body>
+    Kaesten:<br>
+    {% for kasten in kaesten %}
+    {{ kasten.beschreibung }}
+    {{ kasten.groesse }}
+    {{ kasten.verfuegbar }}
+    <br>
+    {% endfor %}
+    <br>Farben:<br>
+    {% for farbe in farben %}
+    {{ farbe.name }}
+    {{ farbe.verfuegbar }}
+    <br>
+    {% endfor %}
+</body>
+
+</html>
