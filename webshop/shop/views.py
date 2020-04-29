@@ -9,7 +9,7 @@ def index(request):
 
 def detail(request, artikel=1):
     context = {
-        'artikelnr': artikel
+        'artikel': Artikel.objects.get(artikelnr=artikel)
     }
     return render(request, 'detail.html', context=context)
 
