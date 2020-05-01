@@ -53,15 +53,37 @@ class Bestellungen(models.Model):
     stadt = models.CharField(max_length=30)
     strasse = models.CharField(max_length=50)
     hausnummer = models.CharField(max_length=5)
-    bezahlt = models.BooleanField(default=True)
+    zahlvorgang = models.IntegerField(default=0)
     zahlart = models.ForeignKey(
         Zahlarten,
         default=1,
         on_delete=models.DO_NOTHING
     )
-    zahldatum = models.DateTimeField()
-    kasten = models.ForeignKey(Kaesten, on_delete=models.DO_NOTHING)
-    farbe = models.ForeignKey(Farben, on_delete=models.DO_NOTHING)
 
     def __str__(self):
         return str(self.bestellnummer)
+
+
+class Bestelldetails(models.Model):
+    bestellnummer = models.ForeignKey(
+        Bestellungen,
+        on_delete=models.DO_NOTHING
+    )
+    artikel = models.ForeignKey(
+        Artikel,
+        on_delete=models.DO_NOTHING
+    )
+    menge = models.IntegerField()
+    einzelpreis = models.FloatField()
+
+    def __str__(self):
+        return str(self.artikel + " " + self.menge)
+
+
+class Warenkorb(models.Model):
+    kundennummer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
+    artikel = models.ForeignKey(
+        Artikel,
+        on_delete=models.DO_NOTHING
+    )
+    menge = models.IntegerField()
