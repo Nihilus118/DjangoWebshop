@@ -87,3 +87,6 @@ class Warenkorb(models.Model):
         on_delete=models.DO_NOTHING
     )
     menge = models.IntegerField()
+
+    def __str__(self):
+        return str(self.kundennummer) + " - " + self.artikel.artikelname + " x " + str(self.menge)
