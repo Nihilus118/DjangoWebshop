@@ -34,3 +34,7 @@ def detail(request, artikel=1):
         'artikel': Artikel.objects.get(artikelnr=artikel)
     }
     return render(request, 'detail.html', context=context)
+
+
+def impressum(request):
+    return render(request, 'impressum.html')
