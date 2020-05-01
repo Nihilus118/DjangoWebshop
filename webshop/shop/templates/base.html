@@ -1,0 +1,28 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="de">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'styles.css' %}">
+</head>
+
+<body>
+    <div class="navbar">
+        <ul>
+            <li><a href="#Konto">Home</a></li>
+            <li><a href="#Shop">News</a></li>
+            <li><a href="#Warenkorb">Contact</a></li>
+            <li><a href="#Log-in">About</a></li>
+            <li><a href="#about">About</a></li>
+        </ul>
+    </div>
+    <div class="wrapper">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

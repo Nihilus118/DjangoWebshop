@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Detail</title>
-</head>
+{% block content %}
 
-<body>
-    {{ artikel.artikelnummer }}
-    {{ artikel.artikelname }}
-    {{ artikel.preis }}
-    {{ artikel.menge }}
-    {{ artikel.groesse_kasten }}
-    {{ artikel.farbe_kasten }}
-</body>
+{{ artikel.artikelnummer }}
+{{ artikel.artikelname }}
+{{ artikel.preis }}
+{{ artikel.menge }}
+{{ artikel.groesse_kasten }}
+{{ artikel.farbe_kasten }}
 
-</html>
+{% endblock %}

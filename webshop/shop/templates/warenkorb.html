@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Warenkorb</title>
-</head>
+{% block content %}
 
-<body>
-    <h1>Warenkorb</h1>
-    {% for pos in artikel_warenkorb %}
-    <a href="/artikel/detail/{{ pos.artikel.artikelnr }}">Detail</a>
-    {{ pos.artikel.artikelnummer }}
-    {{ pos.artikel.artikelname }}
-    {{ pos.artikel.preis }}
-    {{ pos.menge }}
-    <br>
-    {% endfor %}
-</body>
+<h1>Warenkorb</h1>
+{% for pos in artikel_warenkorb %}
+<a href="/artikel/detail/{{ pos.artikel.artikelnr }}">Detail</a>
+{{ pos.artikel.artikelnummer }}
+{{ pos.artikel.artikelname }}
+{{ pos.artikel.preis }}
+{{ pos.menge }}
+<br>
+{% endfor %}
 
-</html>
+{% endblock %}

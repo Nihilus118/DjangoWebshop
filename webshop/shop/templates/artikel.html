@@ -1,21 +1,15 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Alle Artikel</title>
-</head>
+{% block content %}
 
-<body>
-    {% for artikel in artikel_liste %}
-    <a href="detail/{{ artikel.artikelnr }}">Detail</a>
-    {{ artikel.artikelname }}
-    {{ artikel.preis }}
-    {{ artikel.menge }}
-    {{ artikel.groesse_kasten }}
-    {{ artikel.farbe_kasten }}
-    <br>
-    {% endfor %}
-</body>
+{% for artikel in artikel_liste %}
+<a href="detail/{{ artikel.artikelnr }}">Detail</a>
+{{ artikel.artikelname }}
+{{ artikel.preis }}
+{{ artikel.menge }}
+{{ artikel.groesse_kasten }}
+{{ artikel.farbe_kasten }}
+<br>
+{% endfor %}
 
-</html>
+{% endblock %}
