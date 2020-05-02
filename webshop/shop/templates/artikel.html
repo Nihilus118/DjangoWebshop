@@ -3,7 +3,7 @@
 {% block content %}
 
 {% for artikel in artikel_liste %}
-<a href="detail/{{ artikel.artikelnr }}">Detail</a>
+<a class="link" href="{% url 'detail' artikel=artikel.artikelnr %}">Detail</a>
 {{ artikel.artikelname }}
 {{ artikel.preis }}
 {{ artikel.menge }}

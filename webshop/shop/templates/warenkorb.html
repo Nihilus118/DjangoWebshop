@@ -4,7 +4,7 @@
 
 <h1>Warenkorb</h1>
 {% for pos in artikel_warenkorb %}
-<a href="/artikel/detail/{{ pos.artikel.artikelnr }}">Detail</a>
+<a class="link" href="{% url 'detail' pos.artikel.artikelnr %}">Detail</a>
 {{ pos.artikel.artikelnummer }}
 {{ pos.artikel.artikelname }}
 {{ pos.artikel.preis }}
