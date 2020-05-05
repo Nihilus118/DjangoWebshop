@@ -1,6 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.views.generic import ListView
-from .models import Artikel, Kaesten, Farben, Warenkorb
+from .models import Artikel, Kaesten, Farben, Warenkorb, Bestellungen
 from django.http import Http404
 
 
@@ -38,3 +38,11 @@ def detail(request, artikel=1):
 
 def impressum(request):
     return render(request, 'impressum.html')
+
+
+def checkout1(request):
+    return render(request, 'checkout1.html')
+
+
+def checkout2(request):
+    return render(request, 'checkout2.html')
