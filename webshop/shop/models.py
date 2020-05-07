@@ -90,3 +90,6 @@ class Warenkorb(models.Model):
 
     def __str__(self):
         return str(self.kundennummer) + " - " + self.artikel.artikelname + " x " + str(self.menge)
+
+    def gesamtpreis(self):
+        return float(self.artikel.preis * self.menge)
