@@ -1,12 +1,10 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends 'base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Login</title>
-</head>
+{% block title %}
+Registrieren
+{% endblock %}
 
-<body>
+{% block content %}
     {% if form.errors %}
     <p>Logindaten nicht korrekt.</p>
     {% endif %}
@@ -20,9 +18,7 @@
         <p>Benutzername: {{ form.username }}</p>
         <p>Passwort: {{ form.password }}</p>
 
-        <p><input type="submit" value="login"></p>
+        <p><input type="submit" value="Anmelden"></p>
         <input type="hidden" name="next" value="{{ next }}">
     </form>
-</body>
-
-</html>
+{% endblock %}

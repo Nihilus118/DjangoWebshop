@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="de">
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>Registrieren</title>
-</head>
+{% block title %}
+Registrieren
+{% endblock %}
 
-<body>
+{% block content %}
     <h1>Registrieren</h1>
     <form method="post" action="{% url 'registrieren' %}">
         {% csrf_token %}
@@ -15,10 +14,8 @@
         <p>There are errors in the form!</p>
         {% endif %}
 
-        {{ form }}
+        {{ form|crispy }}
 
         <input type="submit" value="Registrieren">
     </form>
-</body>
-
-</html>
+{% endblock %}

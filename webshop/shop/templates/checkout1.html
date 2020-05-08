@@ -53,7 +53,11 @@ Bestellübersicht
     var csrftoken = getCookie('csrftoken');
 
     var total = '{{ gesamtpreis_warenkorb }}'
-    var productId = '1' //TODO: Artikel aus Warenkorb
+    var productIds = [] //TODO: Artikel aus Warenkorb
+
+    {% for pos in artikel_warenkorb %}
+    productIds.push("{{ pos.artikel.artikelnummer }}")
+    {% endfor %}
 
     function completeOrder() {
         var url = "{% url 'co2' %}"
@@ -64,7 +68,7 @@ Bestellübersicht
                 'Content-type': 'application/json',
                 'X-CSRFToken': csrftoken,
             },
-            body: Json.stringify({ 'productId': productId })
+            body: Json.stringify({ 'productIds': productId })
         })
     }
 

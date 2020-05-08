@@ -34,7 +34,7 @@ def artikel(request):
 
 def detail(request, artikel=1):
     context = {
-        'artikel': Artikel.objects.get(artikelnr=artikel)
+        'artikel': Artikel.objects.get(artikelnummer=artikel)
     }
     return render(request, 'detail.html', context=context)
 
@@ -65,9 +65,10 @@ def checkout1(request):
 
 
 def checkout2(request):
+    # Daten aus Request laden
     body = json.loads(request.body)
     print('BODY', body)
-    artikel = Artikel.object.get(artikelnr=body['productId'])
+
     # Bestellung in System
     best = Bestellungen.objects.create(
         kundennummer=request.user,
@@ -77,13 +78,13 @@ def checkout2(request):
         hausnummer=""
     )
 
-    # TODO: Schleife für jeden Artikel
-    Bestelldetails.objects.create(
-        bestellnummer=best.bestellnummer,
-        # TODO: Werte aus Loop
-        artikel=1234,
-        menge=1234,
-        einzelpreis=1234
-    )
+    # Bestellpositionen in System
+    for pos in body:
+        Bestelldetails.objects.create(
+            bestellnummer=best.bestellnummer,
+            artikel=pos["product_id"],
+            menge=pos["amount"],
+            einzelpreis=pos["price"]
+        )
 
     return JsonResponse('Bezahlvorgang erfolgreich!', safe=False)

@@ -1,3 +1,4 @@
+autopep8
 django
 django-mathfilters
-autopep8
+django-crispy-forms

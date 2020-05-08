@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'crispy_forms',
     'nutzer',
     'shop'
 ]
@@ -126,3 +127,5 @@ STATICFILES_DIRS = (
 )
 
 LOGIN_REDIRECT_URL = '/nutzer/'
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
