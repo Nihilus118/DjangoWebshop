@@ -70,8 +70,6 @@ def checkout2(request):
         body = json.loads(request.body)
         print('BODY', body)
 
-        artikel_list = Warenkorb.objects.filter(kundennummer=request.user)
-
         # Bestellung in System
         best = Bestellungen.objects.create(
             kundennummer=request.user,
@@ -83,6 +81,9 @@ def checkout2(request):
             zahlvorgang="PAYPAL-Process ID"
         )
 
+        # Artikel aus Warenkorb
+        artikel_list = Warenkorb.objects.filter(kundennummer=request.user)
+
         # Bestellpositionen in System
         for pos in artikel_list:
             Bestelldetails.objects.create(
@@ -91,6 +92,10 @@ def checkout2(request):
                 menge=pos["menge"],
                 einzelpreis=pos["Artikel"]["preis"]
             )
+
+        # Warenkorb leeren
+        artikel_list = Warenkorb.objects.filter(
+            kundennummer=request.user).delete()
 
         return JsonResponse('Bezahlvorgang erfolgreich!', safe=False)
     else:
