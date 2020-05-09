@@ -50,9 +50,10 @@ class Bestellungen(models.Model):
     bestellnummer = models.IntegerField(primary_key=True, auto_created=True)
     kundennummer = models.ForeignKey(User, on_delete=models.DO_NOTHING)
     bestelldatum = models.DateTimeField(auto_now_add=True)
-    stadt = models.CharField(max_length=30)
-    strasse = models.CharField(max_length=50)
-    hausnummer = models.CharField(max_length=5)
+    ort = models.CharField(max_length=30)
+    plz = models.CharField(max_length=5)
+    strasseHausnummer = models.CharField(max_length=50, null=True)
+    adresszusatz = models.CharField(max_length=50, null=True)
     zahlvorgang = models.IntegerField(default=0)
     zahlart = models.ForeignKey(
         Zahlarten,

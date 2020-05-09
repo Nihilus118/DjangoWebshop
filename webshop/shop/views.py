@@ -65,26 +65,36 @@ def checkout1(request):
 
 
 def checkout2(request):
-    # Daten aus Request laden
-    body = json.loads(request.body)
-    print('BODY', body)
+    if request.user.is_authenticated:
+        # Daten aus Request laden
+        body = json.loads(request.body)
+        print('BODY', body)
 
-    # Bestellung in System
-    best = Bestellungen.objects.create(
-        kundennummer=request.user,
-        # TODO: Alle Werte in POST-Request
-        stadt="",
-        strasse="",
-        hausnummer=""
-    )
+        artikel_list = Warenkorb.objects.filter(kundennummer=request.user)
 
-    # Bestellpositionen in System
-    for pos in body:
-        Bestelldetails.objects.create(
-            bestellnummer=best.bestellnummer,
-            artikel=pos["product_id"],
-            menge=pos["amount"],
-            einzelpreis=pos["price"]
+        # Bestellung in System
+        best = Bestellungen.objects.create(
+            kundennummer=request.user,
+            # TODO: Werte von PP aus body
+            ort="Aus Body",
+            plz="Aus Body",
+            strasseHausnummer="Aus Body",
+            adresszusatz="Aus Body",
+            zahlvorgang="PAYPAL-Process ID"
         )
 
-    return JsonResponse('Bezahlvorgang erfolgreich!', safe=False)
+        # Bestellpositionen in System
+        for pos in artikel_list:
+            Bestelldetails.objects.create(
+                bestellnummer=best.bestellnummer,
+                artikel=pos["artikelnummer"],
+                menge=pos["menge"],
+                einzelpreis=pos["Artikel"]["preis"]
+            )
+
+        return JsonResponse('Bezahlvorgang erfolgreich!', safe=False)
+    else:
+        # Do something for anonymous users.
+        raise Http404(
+            "Sie müssen eingeloggt sein um diese Seite zu sehen."
+        )
